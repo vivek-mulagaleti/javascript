@@ -1,0 +1,83 @@
+<!-- rock paper scissors game -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="
+        playGame('rock', result);
+        ">Rock</button>
+    <button onclick="
+        playGame('paper', result);
+      
+        ">paper</button>
+    <button onclick="
+        playGame('scissors', result);
+        ">scissors</button>
+    <script>
+        // function that checks the computer move and player move.
+
+
+        function playGame(playermove, result) {
+
+            const result = pickRandomNumber(); // calling the function to get computer move
+
+            if (playermove === 'scissors') {
+                if (result === 'rock')
+                    console.log(`your choice is scissors and computer choice is ${result} You Lose!`);
+                else if (result === 'paper')
+                    console.log(`your choice is scissors and computer choice is ${result} You Win!`);
+                else
+                    console.log(`your choice is scissors and computer choice is ${result} Tie`);
+            }
+
+
+            else if (playermove === 'paper') {
+                if (result === 'rock')
+                    console.log(`your choice is paper and computer choice is ${result} You Win!`);
+                else if (result === 'paper')
+                    console.log(`your choice is paper and computer choice is ${result} Tie`);
+                else
+                    console.log(`your choice is rock and computer choice is ${result} You Lose`);
+            }
+
+
+            else {
+                if (result === 'rock')
+                    console.log(`your choice is rock and computer choice is ${result} tie`);
+                else if (result === 'paper')
+                    console.log(`your choice is rock and computer choice is ${result} You Lose`);
+                else
+                    console.log(`your choice is rock and computer choice is ${result} You Win!`);
+            }
+
+        }
+
+
+
+        // function to get computer move
+        function pickRandomNumber() {
+            let result;
+            const randomNumber = Math.random();
+            if (randomNumber >= 0 && randomNumber <= 1 / 3) {
+                result = 'rock';
+            }
+            else if (randomNumber <= 2 / 3)
+                result = 'paper';
+            else
+                result = 'scissors';
+
+            return result;
+        }
+
+    </script>
+</body>
+
+</html>
