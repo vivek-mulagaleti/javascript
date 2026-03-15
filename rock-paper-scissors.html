@@ -12,52 +12,93 @@
 
 <body>
     <button onclick="
-        playGame('rock', result);
+        playGame('rock',);
         ">Rock</button>
     <button onclick="
-        playGame('paper', result);
+        playGame('paper',);
       
         ">paper</button>
     <button onclick="
-        playGame('scissors', result);
+        playGame('scissors');
         ">scissors</button>
+
+    <button onclick="
+        score.wins=0;
+        score.loses=0;
+        score.ties=0;
+        localStorage.removeItem('Score')
+    "
+    >Reset button</button>
     <script>
         // function that checks the computer move and player move.
 
+        let score=JSON.parse(localStorage.getItem('Score')) ||  
+            {
+                wins: 0,
+                loses: 0,
+                ties: 0
+            };
 
-        function playGame(playermove, result) {
+        function playGame(playermove) {
 
             const result = pickRandomNumber(); // calling the function to get computer move
 
+            let result1;
+
             if (playermove === 'scissors') {
-                if (result === 'rock')
-                    console.log(`your choice is scissors and computer choice is ${result} You Lose!`);
-                else if (result === 'paper')
-                    console.log(`your choice is scissors and computer choice is ${result} You Win!`);
-                else
-                    console.log(`your choice is scissors and computer choice is ${result} Tie`);
+                if (result === 'rock'){
+                    result1='lose';
+                }
+                else if (result === 'paper'){
+                    result1='win';
+            }
+                else{
+                    result1='tie';
+                }
             }
 
 
             else if (playermove === 'paper') {
-                if (result === 'rock')
-                    console.log(`your choice is paper and computer choice is ${result} You Win!`);
-                else if (result === 'paper')
-                    console.log(`your choice is paper and computer choice is ${result} Tie`);
-                else
-                    console.log(`your choice is rock and computer choice is ${result} You Lose`);
+                if (result === 'rock'){
+                    result1='win';
+                }
+                else if (result === 'paper'){
+                    result1='tie';
+                }
+                else{
+                    result1='lose';
+                }
             }
 
 
             else {
-                if (result === 'rock')
-                    console.log(`your choice is rock and computer choice is ${result} tie`);
-                else if (result === 'paper')
-                    console.log(`your choice is rock and computer choice is ${result} You Lose`);
-                else
-                    console.log(`your choice is rock and computer choice is ${result} You Win!`);
+                if (result === 'rock'){
+                    result1='tie';
+                }
+                else if (result === 'paper'){
+                    result1='lose';
+                }
+                else{
+                    result1='win';
+                }
             }
 
+
+            if(result1==='win'){
+                score.wins+=1;
+            }
+            else if(result1==='tie'){
+                score.ties+=1
+            }
+            else{
+                score.loses+=1;
+            }
+            alert(`your choice is ${playermove} and computer choice is ${result} You ${result1} Wins:${score.wins},loses:${score.loses},tie:${score.ties}`);
+            
+
+
+
+            localStorage.setItem('Score', JSON.stringify(score));
         }
 
 
